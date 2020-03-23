@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-        <!-- V.0 -->
+        <!-- V.2 -->
 
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
@@ -36,19 +36,6 @@
 
 
 <style>
-    
-    #icons a: hover{
-content:url("like2.png");
-    }
-    #likebutton img:hover{
-      content:url("like2.png");
-    }
-    #dislikebutton{
-
-    }
-    #favoritebutton{
-
-    }
      .contactUs {margin-left: 24em}
       .contactUs strong {margin-left: 4em}
       .contactUs p a {padding-right: 3em;}
@@ -103,49 +90,10 @@ border-style: solid;
 }
 </style>
 
-  <script type="text/javascript">
-
-   function changeImageLike(){
-
-  if (document.getElementById("likebutton").src == "like.png") 
-        {
-            document.getElementById("likebutton").src = "like2.png";
-        }
-
-    else if (document.getElementById("likebutton").src == "like2.png") 
-        {
-            document.getElementById("likebutton").src = "like.png";
-        }
-    }
-
- function changeImageDislike(){
-
-  if (document.getElementById("dislikebutton").src == "dislike.png") 
-        {
-            document.getElementById("dislikebutton").src = "dislike2.png";
-        }
-    else  if (document.getElementById("dislikebutton").src == "dislike2.png") 
-        {
-            document.getElementById("dislikebutton").src = "dislike.png";
-        }
-    }
-
-     function changeImageFavorite(){
-
-  if (document.getElementById("favoritebutton").src == "favorite.png") 
-        {
-            document.getElementById("favoritebutton").src = "favorite2.png";
-        }
-    else  if (document.getElementById("favoritebutton").src == "favorite2.png") 
-        {
-            document.getElementById("favoritebutton").src = "favorite.png";
-        }
-    }
-
-  </script>
-
+  
 </head>
 <body>
+
 <section class="menu cid-rQpmxxKyZ3" once="menu" id="menu2-6">
 
     
@@ -237,11 +185,13 @@ border-style: solid;
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
                         </div>
                     </div>
-                    <div id = "icons"> <p> 
-              <a><img src="like.png" id = "likebutton" onclick= "changeImageLike()"></a>
-              <img src="dislike.png" id = "dislikebutton" onclick= "changeImageDislike()">
-              <img src="favorite.png" id = "favoritebutton" onclick= "changeImageFavorite()">
-                </div> </p>
+                    <div id = "icons">
+              <span id = "likebutton"><img src="like.png" id = "likeimg"></span>
+              <label id = 'likecounter'></label>
+              <span id = "dislikebutton"><img src="dislike.png" id = "dislikeimg"></span>
+              <label id = 'dislikecounter'></label>
+             <span id = "favoritebutton"><img src="favorite.png" id = "favoriteimg"></span> 
+              <label id = 'favoritecounter'></label>
 
                         <div id = "comments" data-for="message" class="col-md-12 form-group">
                             <label for="message-form1-b" class="form-control-label mbr-fonts-style display-7" >Comments</label>
@@ -269,7 +219,6 @@ border-style: solid;
   <script src="hadeelassets/tether/tether.min.js"></script>
   <script src="hadeelassets/smoothscroll/smooth-scroll.js"></script>
   <script src="hadeelassets/parallax/jarallax.min.js"></script>
-  <script src="hadeelassets/theme/js/script.js"></script>
   
   <section class="mbr-section article content9 cid-rQplkhn7NZ" id="content9-4">
 
@@ -314,7 +263,6 @@ border-style: solid;
     </div>
 </section>
 
-
   <script src="indexassets/web/assets/jquery/jquery.min.js"></script>
   <script src="indexassets/popper/popper.min.js"></script>
   <script src="indexassets/bootstrap/js/bootstrap.min.js"></script>
@@ -324,8 +272,76 @@ border-style: solid;
   <script src="indexassets/dropdown/js/navbar-dropdown.js"></script>
   <script src="indexassets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="indexassets/parallax/jarallax.min.js"></script>
-  <script src="indexassets/theme/js/script.js"></script>
   
-  
+  <script type = "text/javascript">
+  		var likeCount = 0;
+  		var dislikeCount = 0;
+  		var favoriteCount = 0;
+  	window.addEventListener("load", start, false);
+  	window.addEventListener("load", startCounters, false);
+  	function start(event){
+  		var likecounter = document.getElementById('likecounter');
+  		var dislikecounter = document.getElementById('dislikecounter');
+  		var favoritecounter = document.getElementById('favoritecounter');
+  		var likebutton = document.getElementById('likebutton');
+  		var dislikebutton = document.getElementById('dislikebutton');
+  		var favoritebutton = document.getElementById('favoritebutton');
+  		likebutton.addEventListener('click',changeLikeImage);
+  		dislikebutton.addEventListener('click',changeDislikeImage);
+  		favoritebutton.addEventListener('click',changeFavoriteImage);
+  	}
+  	function changeLikeImage(){
+  		if(document.getElementById('likeimg').getAttribute('src') == 'like.png'){
+  		document.getElementById('likeimg').setAttribute('src','like2.png');
+  		if(document.getElementById('dislikeimg').getAttribute('src') == 'dislike2.png'){
+ 		document.getElementById('dislikeimg').setAttribute('src','dislike.png');
+ 		dislikeCount--;
+  		dislikecounter.innerHTML = dislikeCount;
+  	}
+  		likeCount++;
+  		likecounter.innerHTML = likeCount;
+  	}
+  	else if(document.getElementById('likeimg').getAttribute('src') == 'like2.png'){
+  		document.getElementById('likeimg').setAttribute('src','like.png');
+  		likeCount--;
+  		likecounter.innerHTML = likeCount;
+  	}
+  	}
+  	function changeDislikeImage(){
+  			if(document.getElementById('dislikeimg').getAttribute('src') == 'dislike.png'){
+  		document.getElementById('dislikeimg').setAttribute('src','dislike2.png');
+  		if(document.getElementById('likeimg').getAttribute('src') == 'like2.png'){
+  	    document.getElementById('likeimg').setAttribute('src','like.png');
+  	    likeCount--;
+  	    likecounter.innerHTML = likeCount;
+  	}
+  		dislikeCount++;
+  		dislikecounter.innerHTML = dislikeCount;
+  	}
+  	else if(document.getElementById('dislikeimg').getAttribute('src') == 'dislike2.png'){
+  		document.getElementById('dislikeimg').setAttribute('src','dislike.png');
+  		dislikeCount--;
+  	}
+  		dislikecounter.innerHTML = dislikeCount;
+  	}
+  	 	function changeFavoriteImage(){
+  			if(document.getElementById('favoriteimg').getAttribute('src') == 'favorite.png'){
+  		document.getElementById('favoriteimg').setAttribute('src','favorite2.png');
+  		favoriteCount++;
+  	}
+  	else if(document.getElementById('favoriteimg').getAttribute('src') == 'favorite2.png'){
+  		document.getElementById('favoriteimg').setAttribute('src','favorite.png');
+  		favoriteCount--;
+  	}
+  	favoritecounter.innerHTML = favoriteCount;
+  	}
+
+  	function startCounters(event){
+  		likecounter.innerHTML = likeCount;
+  		dislikecounter.innerHTML = dislikeCount;
+  		favoritecounter.innerHTML = favoriteCount;
+  	}
+  </script>
+
 </body>
 </html>
