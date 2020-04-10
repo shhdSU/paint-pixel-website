@@ -1,6 +1,4 @@
-<!--             localhost/w/editForm.php       -->
-
-
+<!-- V.2 -->
 <?php
 
 session_start();
