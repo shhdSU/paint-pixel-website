@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html  >
-    <!-- V.1 -->
+<html >
+    <!-- V.2 -->
+    <?php include 'DBconnection.php';?>
+    
+    
 <head>
-  <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
   <meta charset="UTF-8">
+    <!--
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.0, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+-->
   <link rel="shortcut icon" href="indexassets/images/fulllogo.png" type="image/x-icon">
+    <!--
   <meta name="description" content="">
-  
+  -->
+    
+   <script type="text/javascript" src="jQuery/jquery-3.2.1.min.js"></script>
 
   <link rel="stylesheet" href="indexassets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="indexassets/bootstrap/css/bootstrap.min.css">
@@ -21,20 +28,126 @@
   <link rel="preload" as="style" href="indexassets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="indexassets/mobirise/css/mbr-additional.css" type="text/css">
   
   <style>
-      .nav-item{margin-right: 23em;
+       
+/*
+      .modal-wrapper {
+	display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+*/
+
+/* Modal Content Box */
+/*
+#modal-content {
+    display:block;
+    background-color: #fefefe;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 500px; 
+    height: 500px;
+	padding-bottom: 30px;
+    border-radius: 8px;
+
+}
+*/
+
+.close2 {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-weight: bold;
+    transform: rotate(45deg);
+    opacity: 1;
+}
+.close2:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+      .Approve-button{
+        position: absolute;
+        background-color: #feeb7f;
+        font-size: 15px;
+        height: 40px;
+        width: 130px;
+        color: black;
+        left: 110px;
+        top: 740px;
+        border-radius: 20px;
+        font-weight: bold;
+        border:solid; 
+        border-color:#ffdf28;
+    }
+    .Approve-button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+      .Disapprove-button{
+        position: absolute;
+        background-color: #feeb7f;
+        font-size: 15px;
+        height: 40px;
+        width: 130px;
+        color: black;
+        right: 110px;
+        top: 740px;
+        border-radius: 20px;  
+        font-weight: bold; 
+        border:solid; 
+        border-color:#ffdf28;  
       }
+      .Disapprove-button:hover{
+          opacity: 0.5;
+    cursor: pointer;
+      }
+      .boxxx:hover{
+    cursor: pointer;
+}
+      .inside-box{
+          align-content: center;
+          justify-content: center;
+          text-align: center;
+      }
+      .nav-item{padding-left: 10em;
+          padding-right: 10em;
+      }
+
       .contactUs {margin-left: 25em}
       .contactUs strong {margin-left: 3em}
       .contactUs p a {padding-right: 3em;}
       #services5-a {background-color: #efefef;}
       #NewArtist h2 { color: black; text-align: center;}
-      #aboutus {text-align: center;
-      
+      #aboutus {text-align: center;}
+      #button-22{
+    position: absolute;
+    right: 740px;
+    top: 144px;
+    color:black;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    border: 0px;
       }
+      #button-22:hover{
+    opacity: 0.5;
+    cursor: pointer;
+      }
+      #formm {
+          position: absolute;
+          top:1200px;
+          z-index: 1;
+      }
+      
        #aboutus strong{font-size: 30pt;}
       
        #aboutus strong{font-size: 30pt;}
-     
+    
 
     </style>
 
@@ -42,6 +155,7 @@
      <!--paste your head code-->
     
     <title>Admin Home Page</title>
+    
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
@@ -54,9 +168,8 @@
   
 </head>
 <body>
+  
   <section class="menu cid-rQpmxxKyZ3" once="menu" id="menu2-6">
-
-    
 
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,10 +215,10 @@
     </nav>
      
 </section>
+    
+    <div id="formm"></div>
 
 <section class="cid-rQpiiEn3UX mbr-fullscreen mbr-parallax-background" id="header2-0">
-
-    
 
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);"></div>
 
@@ -123,28 +236,32 @@
             <i class="mbri-down mbr-iconfont" style = "position:absolute; left: -15px"></i>
         </a>
     </div>
+    </div>
 </section>
  
     
     
     <!--paste your body code-->
+    
     <div class="hadeel" style = "background-color: rgb(100, 100, 100);">
-    <section class="services5 cid-rReLVLfkIf" id="services5-a"  >
+        <section class="services5 cid-rReLVLfkIf" id="services5-a"  >
    
-    <div class="container">
+    <div class="container" id="cards">
         <div class="row">
             <!--Titles-->
             <div class="title pb-5 col-12" id="NewArtist">
                 <h2 class="align-left mbr-fonts-style m-0 display-1">
-                    New artists </h2>
+                    New Artists </h2>
                 
             </div>
             <!--Card-1-->
-            <div class="card px-3 col-12">
-                <a class="card-wrapper media-container-row media-container-row" >
+
+<!--
+            <div class="card px-3 col-12" onclick="document.getElementById('modal-wrapper').style.display='block'">
+                <div class="card-wrapper media-container-row media-container-row"  >
                     <div class="card-box" >
                         <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
+                            <h4 class="card-title mbr-fonts-style display-5" >
                                 Artist 1
                             </h4>
                             
@@ -154,73 +271,97 @@
                             
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
-            <!--Card-2-->
-            <div class="card px-3 col-12">
-                <a class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Artist 2
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5"></p>
-                        </div>
-                        <div class="bottom-line">
-                            
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--Card-3-->
-            <div class="card px-3 col-12">
-                <a class="card-wrapper media-container-row media-container-row">
-                    <div class="card-box">
-                        <div class="top-line pb-3">
-                            <h4 class="card-title mbr-fonts-style display-5">
-                                Artist 3
-                            </h4>
-                            <p class="mbr-text cost mbr-fonts-style m-0 display-5"></p>
-                        </div>
-                        <div class="bottom-line">
-                            
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <!--Card-4-->
-            
-            <!--Card-5-->
-            
-            <!--Card-6-->
-            
-            <!--Card-7-->
-            
-            <!--Card-8-->
-            
-            <!--Card-9-->
-            
-            <!--Card-10-->
-            
-            <!--Card-11-->
-            
-            <!--Card-12-->
-            
-        </div>
+-->
+       
     </div>
-</section>
+            </div>
+        </section>
+    </div>
+        
+         <div id="pop-up">
+        </div>
+ 
+            <script>
+                <?php
+                $query = "SELECT * FROM Artist WHERE status = 'W' ";
+                $result = mysqli_query($conn,$query);
+                ?>
+  
+                  <?php
+while($Arr = mysqli_fetch_array($result)){
+    ?>
+                <?php
+      $userName = $Arr["userName"];
+      $name = $Arr["name"];
+      $aboutMe = $Arr["aboutMe"];
+      $email = $Arr["email"];
+      $sample = "Samples/".$Arr["samplePath"];
+      ?>
+                var object_ = new Object();
+                object_.name = "<?php echo $name ?>";
+                object_.aboutMe = "<?php echo $aboutMe ?>";
+                object_.email = "<?php echo $email ?>";
+                object_.userName = "<?php echo $userName ?>";
+                object_.sample = "<?php echo $sample ?>";
+                
+                var userName = "<?php echo $userName ?>";
+                var lowerusername = userName.toLowerCase();
+          
+                
+          var node2 = document.createElement("div");
+          node2.setAttribute("id","D"+lowerusername);
+          node2.setAttribute("class","inside-box");
+          document.getElementById("pop-up").appendChild(node2);    
+          document.getElementById("D"+lowerusername).innerHTML = "<div id='"+lowerusername+"'"+"style = 'display:none; position:fixed; z-index:1; width: 500px; height: 800px; overflow: auto; background-color:white;justify-content:center;align-items:center;border-radius: 10px; box-shadow: 0px 0px 0px 8000px rgba(0,0,0,0.7); right:600px;top:150px;'><br><br><h1>Artist Information</h1><br><h5>Artist Name :<br>"+ object_.name +"<br><br>About Artist :<br>"+ object_.aboutMe +"<br><br>Artist Email :<br>"+ object_.email+"<br><br> Artist smaple:<br></h5><img src = '"+object_.sample+"' height = '400px' width = '400px'></div>" ;
+                        
+          var node = document.createElement("div");
+          node.setAttribute("id","c"+lowerusername);
+          document.getElementById('cards').appendChild(node);
+          document.getElementById("c"+lowerusername).setAttribute("class","boxxx");
+          document.getElementById("c"+lowerusername).innerHTML = "<div style="+"'background-color:#feeb7f; width: 1100px; height: 75px; border:solid; border-color:#ffdf28; align-items:center; justify-content:center; margin:5px;'"+" onclick= "+"'document.getElementById("+'"'+lowerusername+'"'+").style.display"+'=  "block"'+"'"+'><h4><br>'+userName+"</h4></div>";
+                
+           var node3 = document.createElement("div");
+           node3.setAttribute("class","close2");
+           node3.setAttribute("style","font-size: 42px; color:#feeb7f; ");
+           node3.setAttribute("onclick","document.getElementById('"+lowerusername+"').style.display='none'");  
+            node3.innerHTML ="+";    
+           document.getElementById(lowerusername).appendChild(node3);
+                
+           var node4 = document.createElement("p");
+           node4.innerHTML = "<form method = 'post'  action = 'Alterstatus.php'><input type='hidden' name='userName' value='"+lowerusername+"'><input type ='submit' name = 'submit' value = 'Approve' class='Approve-button'></form>";
+           document.getElementById(lowerusername).appendChild(node4);
+                
+           var node5 = document.createElement("p");
+           node5.innerHTML = "<form method = 'post'  action = 'Alterstatus.php'><input type='hidden' name='userName' value='"+lowerusername+"'><input type ='submit' name = 'submit' value = 'Disapprove' class='Disapprove-button'></form>";
+           document.getElementById(lowerusername).appendChild(node5);    
+              
 
-
-  <section class="engine"><a href="https://mobirise.info/v">html templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
+               <?php
+          
+                }
+                
+                ?>
+      
+            
+      </script>
+        
+        
+     
+        
+       
+        <!--
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/theme/js/script.js"></script>
-  
-  </div>
+  -->
       
     <!----------------------->
+       
      <section class="mbr-section article content9 cid-rQplkhn7NZ" id="content9-4">
 
 
@@ -281,7 +422,7 @@
     </div>
 </section>
 
-
+<!--
   <script src="indexassets/web/assets/jquery/jquery.min.js"></script>
   <script src="indexassets/popper/popper.min.js"></script>
   <script src="indexassets/bootstrap/js/bootstrap.min.js"></script>
@@ -292,7 +433,10 @@
   <script src="indexassets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="indexassets/parallax/jarallax.min.js"></script>
   <script src="indexassets/theme/js/script.js"></script>
+   --> 
+    
   
-  
+    
+
 </body>
 </html>
