@@ -1,5 +1,4 @@
-<!--             localhost/w/Artist%20Account%20Page.php       -->
-
+<!-- V.2 -->
 
 
 
@@ -17,7 +16,7 @@ include "DBconnection.php";
 <!DOCTYPE html>
 <html  >
 <head>
-        <!-- V.1 -->
+        
 
   <!--      -->
   <meta charset="UTF-8">
