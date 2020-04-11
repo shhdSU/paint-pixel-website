@@ -1,24 +1,26 @@
 <?php
-    DEFINE('DB_USER','root');
-    DEFINE('DB_PSWD','');
-    DEFINE('DB_HOST','localhost');
-    DEFINE('DB_NAME','paint-and-pixel');
-    $conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD);
-    if ($conn) {
-  echo 'connected';
-} else {
-  echo 'not connected';
-}
-    if (!$conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD))
-        die("Connection failed.");
+//    DEFINE('DB_USER','root');
+//    DEFINE('DB_PSWD','');
+//    DEFINE('DB_HOST','localhost');
+//    DEFINE('DB_NAME','paint-and-pixel');
+//    $conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD);
+//    if ($conn) {
+//  echo 'connected';
+//} else {
+//  echo 'not connected';
+//}
+//    if (!$conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD))
+//        die("Connection failed.");
+//
+//    if(!mysqli_select_db($conn, DB_NAME))
+//        die("Could not open the ".DB_NAME." database.");
 
-    if(!mysqli_select_db($conn, DB_NAME))
-        die("Could not open the ".DB_NAME." database.");
+include "DBconnection.php";
       session_start();
 ?>
 <!DOCTYPE html>
 <html>
-        <!-- V.0 -->
+        <!-- V.1 -->
 
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
@@ -38,6 +40,13 @@
   <link rel="stylesheet" href="indexassets/theme/css/style.css">
   <link rel="preload" as="style" href="indexassets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="indexassets/mobirise/css/mbr-additional.css" type="text/css">
   
+    
+    
+     <!-- important links for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
+    
   
   <title>View Artwork</title>
   <link rel="stylesheet" href="hadeelassets/bootstrap/css/bootstrap.min.css">
@@ -58,7 +67,7 @@
       .contactUs strong {margin-left: 4em}
       .contactUs p a {padding-right: 3em;}
   
-    .nav-item{margin-right: 18em;
+    .nav-item{margin-right: 14em;
       }
 
 label{color: #feeb7e;
@@ -113,6 +122,57 @@ border-style: solid;
 #icons{
   align-content: left;
 }
+    
+    #search-2 {
+          position: fixed;
+          overflow: scroll;
+          background-color: white;
+          border-radius: 10px;
+          display: none;
+          z-index: 10;
+          top :72px;
+          right: 450px;
+          border: 4px;
+          border-color: black;
+          max-height: 350px;
+      }
+      .Artworks{
+          margin-left:50px;
+          height: 30px; 
+          width: 200px;
+          border: solid; 
+          border-left-width: 5px;
+          border-right-width: 0px; 
+          border-bottom-width: 0px; 
+          border-top-width: 0px; 
+          border-left-color: #feeb7f; 
+          margin-top: 5px;
+          margin-left: 25px;
+          font-size: 20px;
+          display: none;
+          
+
+      }
+      .Artworks:hover{
+        border-left-color: gray;   
+      }
+      #filterInput{
+          background-color : #f6f6f6 ;
+          margin-left:0px;  
+          margin-top:17px; 
+          height: 50px; 
+          width: 380px; 
+          border: solid;
+          border-color: #feeb7f; 
+          border-radius:50px;
+          font-size: 20px
+      }
+      
+      .titles{
+          color: gray;
+      }
+    
+    
 </style>
 
   
@@ -157,12 +217,12 @@ border-style: solid;
                 </li>
                 <div class="search">
                  <li class="nav-item" >
-                    <a id = "search1" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
+                    <a id = "search2" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
                 </li>
                     </div>
               <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id = "signout3" class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -172,6 +232,109 @@ border-style: solid;
 </section>
 
 
+    
+    
+     <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+     
+        
+        $(document).ready(function(){
+  $(".search").hover(function(){
+    //hover
+      document.getElementById("search2").innerHTML="<img src='indexassets/search2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("search2").innerHTML="<img src='indexassets/search.png' width='25' height='28'>";
+  }); 
+});
+        
+        
+    </script>
+    
+    
+    <div id = "search-2"  placeholder="Search names...">
+    
+         <form id="searchTitle">
+         <input id="filterInput" type="text">
+             
+
+         
+         </form>
+         
+            
+         
+    </div>
+    
+     <script>
+       
+         $(document).ready(function(){
+  $("#search2").click(function(){
+    $("#search-2").toggle();
+  });
+}); 
+         
+         <?php
+             $query = "SELECT title FROM Artwork";
+             $result = mysqli_query($conn,$query);
+         
+         
+ while($Arr = mysqli_fetch_array($result)){
+             $art = $Arr["title"];
+             ?>
+            var art = "<?php echo $art ?>";
+            var node = document.createElement("div");
+            node.setAttribute("class","Artworks");
+            document.getElementById('searchTitle').appendChild(node);
+     
+            node.innerHTML = "<a href='View%20Artwork%20(Artist).php 'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+         
+   <?php } ?>
+ 
+         
+         
+         // Get input element
+    let filterInput = document.getElementById('filterInput');
+    // Add event listener
+    filterInput.addEventListener('keyup', filterNames);
+
+    function filterNames(){
+
+      // Get value of input
+      let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+      // Get names ul
+      let allTitles = document.getElementById('searchTitle');
+      // Get lis from ul
+      let arts = allTitles.querySelectorAll('div.Artworks');
+
+      // Loop through collection-item lis
+      for(let i = 0;i < arts.length;i++){
+        let a = arts[i].getElementsByClassName('titles')[0];
+        // If matched
+        if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+          arts[i].style.display = 'block';
+        } else {
+          arts[i].style.display = 'none';
+        }
+      }
+
+    }
+         
+         
+ 
+    </script>
+    
+    
 
   <section class="header4 cid-rRDt6QwJxx mbr-parallax-background" id="header4-h">
 
@@ -211,8 +374,8 @@ border-style: solid;
                 
                 <div class="mbr-text align-center mbr-white pb-3">
                     
-<form action="https://mobirise.com/" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form" id="form">
-  <input type="hidden" name="email" data-form-email="true" value="Qdpw0r4NV/YhOdycB0MkBs5eKQ4YtbucB3A1nsrk0wY4KLF2EF23WkF5b0+oPI0V2wW5+9YsccjpcgaTt8/QkZ8tZ4nOHNYihA4raFObhfl/ts0c6P3VJCX9KeVQGgiJ">
+<form action="" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form" id="form">
+  <input type="hidden" name="email" data-form-email="true" value="">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
