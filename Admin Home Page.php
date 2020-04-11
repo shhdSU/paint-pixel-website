@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html >
-    <!-- V.4 -->
+    <!-- V.5 -->
     <?php include 'DBconnection.php';?>
     
     
@@ -250,7 +250,7 @@
                 
                 <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id="signout3" class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -259,6 +259,25 @@
     </nav>
      
 </section>
+    
+    
+    
+    <script>
+    
+    $(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+    
+    </script>
+    
+    
     
     <div id="formm"></div>
 
@@ -283,7 +302,7 @@
     </div>
    
 </section>
- 
+    
     
     
     <!--paste your body code-->
