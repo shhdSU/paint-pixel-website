@@ -1,4 +1,4 @@
-<!-- V.4 -->
+<!-- V.5 -->
 
 <?php
 session_start();
@@ -21,7 +21,8 @@ if(!isset($_SESSION['username'])){
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="indexassets/images/fulllogo.png" type="image/x-icon">
   <meta name="description" content="">
-  
+     <!-- important link for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <link rel="stylesheet" href="indexassets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="indexassets/bootstrap/css/bootstrap.min.css">
@@ -45,13 +46,58 @@ if(!isset($_SESSION['username'])){
     
         
   <style>
-      .nav-item{margin-right: 11em;
+      .nav-item{margin-right: 10em;
       }
       #cpyryt {color: white;}
       .contactUs {margin-left: 24em}
       .contactUs strong {margin-left: 4em}
       .contactUs p a {padding-right: 3em;}
-            #gallery1-7 {background-color:#efefef;
+      #gallery1-7 {background-color:#efefef;}
+                
+    #header2-0{
+          animation: myfirst 50s ease-in .1s infinite ;
+
+      }
+      
+      
+      @keyframes myfirst{
+          
+          0%{
+             background-image: url(indexassets/images/art0.jpg); 
+          }
+          10%{
+             background-image: url(indexassets/images/art1.jpg); 
+          }
+          20%{
+             background-image: url(indexassets/images/art2.jpg); 
+          }
+          30%{
+             background-image: url(indexassets/images/art3.jpg); 
+          }
+          40%{
+             background-image: url(indexassets/images/art4.jpg); 
+          }
+          50%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          60%{
+             background-image: url(indexassets/images/art6.jpg); 
+          }
+          70%{
+             background-image: url(indexassets/images/art7.jpg); 
+          }
+          80%{
+             background-image: url(indexassets/images/art8.jpg); 
+          }
+          90%{
+             background-image: url(indexassets/images/art9.jpg); 
+          }
+          100%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          
+          
+      }            
 
     </style>
     </head>
@@ -81,7 +127,7 @@ if(!isset($_SESSION['username'])){
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item" >
-                    <a class="nav-link link text-white display-5" href="artistdashboard.html">
+                    <a class="nav-link link text-white display-5" href="artistdashboard.php">
                         Home</a>
                 </li>
                 <li class="nav-item">
@@ -91,22 +137,24 @@ if(!isset($_SESSION['username'])){
                     <a class="nav-link link text-white display-5" href="#conus">
                         Contact us</a>
                 </li><li class="nav-item" >
-                    <a class="nav-link link text-white display-5" href="Artist%20Account%20Page.html">
+                    <a class="nav-link link text-white display-5" href="Artist%20Account%20Page.php">
                         My account</a>
                 </li>
+<!--
                 <div class="search">
                  <li class="nav-item" >
                     <a id = "search1" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
                 </li>
                     </div>
+-->
                 <div class="add">
                  <li class="nav-item" >
-                    <a id = "add" class="nav-link link text-white display-5" href="Artwork%20Adding%20Page.html"><img src="indexassets/add" width="28" height="28"></a>
+                    <a id = "add" class="nav-link link text-white display-5" href="Artwork%20Adding%20Page.php"><img src="indexassets/add" width="28" height="28"></a>
                 </li>
                     </div>
-                                <div class="signout">
+                                <div class ="signout" >
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id = "signout1" class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -114,8 +162,36 @@ if(!isset($_SESSION['username'])){
         </div>
     </nav>
 </section>
+        
+        
+        <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+            
+            $(document).ready(function(){
+  $(".add").hover(function(){
+    //hover
+      document.getElementById("add").innerHTML="<img src='indexassets/add2' width='28' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("add").innerHTML="<img src='indexassets/add' width='28' height='28'>";
+  }); 
+});
+            
+</script>
+        
+        
 
-        <section class="cid-rQpiiEn3UX mbr-fullscreen mbr-parallax-background" id="header2-0">
+        <section class="mbr-fullscreen mbr-parallax-background" id="header2-0">
 
     
 
@@ -326,6 +402,3 @@ $pathsArray[]=$src;
         
     </body>
 </html
-
-
-
