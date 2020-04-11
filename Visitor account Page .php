@@ -1,21 +1,24 @@
-<!-- V.1 -->
+<!-- V.3 -->
+
 
 
 <?php
 session_start();
 if(!isset($_SESSION['username'])){
   header("location: index.php");
- exit();}
+  exit();}
 
 include "DBconnection.php";
            
 ?>
 
+
 <!DOCTYPE html>
-<html>
-        
+<html  >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
+        
+
+  <!--      -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.12.0, mobirise.com">
@@ -23,6 +26,11 @@ include "DBconnection.php";
   <link rel="shortcut icon" href="indexassets/images/fulllogo.png" type="image/x-icon">
   <meta name="description" content="">
   
+    <!-- important links for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
 
   <link rel="stylesheet" href="indexassets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="indexassets/bootstrap/css/bootstrap.min.css">
@@ -33,20 +41,10 @@ include "DBconnection.php";
   <link rel="stylesheet" href="indexassets/theme/css/style.css">
   <link rel="preload" as="style" href="indexassets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="indexassets/mobirise/css/mbr-additional.css" type="text/css">
   
+
+
+
   <style>
-      .nav-item{margin-right: 18em;}
-       .contactUs {margin-left: 25em}
-      .contactUs strong {margin-left: 3em}
-      .contactUs p a {padding-right: 3em;}
-      #gallery1-7 {background-color:#efefef;
-      align-content: center;}
-      #content10-8 {background-color:#e3cd52}
-      #Galary {color: black;}
-      #accountid {margin-top: 5em;}
-      #brdr input {border-color: #e3cd52;}
-
-
-
       .nav-item{margin-right: 14em;
       }
         .contactUs {margin-left: 25em;}
@@ -75,7 +73,7 @@ include "DBconnection.php";
 
       }
 
-       #uname, #name ,#email{color: black;
+       #name1 ,#email1,#Aboutme1{color: black;
         text-shadow: 1.3px 1.3px #e3cd52;
         font-size: 1.5em;
         padding-right: 1em;
@@ -99,19 +97,69 @@ include "DBconnection.php";
 margin-left: 50em;
 
       }
+      
+      #search-2 {
+          position: fixed;
+          overflow: scroll;
+          background-color: white;
+          border-radius: 10px;
+          display: none;
+          z-index: 10;
+          top :74px;
+          right: 450px;
+          border: 4px;
+          border-color: black;
+          max-height: 350px;
+      }
+      .Artworks{
+          margin-left:50px;
+          height: 30px; 
+          width: 200px;
+          border: solid; 
+          border-left-width: 5px;
+          border-right-width: 0px; 
+          border-bottom-width: 0px; 
+          border-top-width: 0px; 
+          border-left-color: #feeb7f; 
+          margin-top: 5px;
+          margin-left: 25px;
+          font-size: 20px;
+          display: none;
+          
+
+      }
+      .Artworks:hover{
+        border-left-color: gray;   
+      }
+      #filterInput{
+          background-color : #f6f6f6 ;
+          margin-left:0px;  
+          margin-top:17px; 
+          height: 50px; 
+          width: 380px; 
+          border: solid;
+          border-color: #feeb7f; 
+          border-radius:50px;
+          font-size: 20px
+      }
+      
+      .titles{
+          color: gray;
+      }
+     
+      
     </style>
     
      <!--paste your head code-->
-    
-  <title>Visitor account Page</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+    <title>Artist Account Page</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="stylesheet" href="assets/gallery/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    
     <!----------------------->
   
 </head>
@@ -132,7 +180,7 @@ margin-left: 50em;
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="Visitor%20Home%20Page%20.php">
+                    <a href="artistdashboard.html">
                         <img src="indexassets/images/fulllogo.png" alt="Mobirise" title="" style="height: 4.6rem;">
                     </a>
                 </span>
@@ -142,24 +190,31 @@ margin-left: 50em;
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                 <li class="nav-item" >
-                    <a class="nav-link link text-white display-5" href="Visitor%20Home%20Page%20.php">
+                    <a class="nav-link link text-white display-5" href="artistdashboard.php">
                         Home</a>
-                 </li>
+                </li>
                <li class="nav-item" >
                     <a class="nav-link link text-white display-5" href="#conus">
                         Contact us</a>
                 </li><li class="nav-item" >
-                    <a class="nav-link link text-white display-5" href="">
+                    <a class="nav-link link text-white display-5" href="#">
                         My account</a>
                 </li>
                 <div class="search">
                  <li class="nav-item" >
-                    <a id = "search1" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
+                    <a id = "search1" class="nav-link link text-white display-5" ><img src="indexassets/search.png" width="25" height="28"></a>
                 </li>
                     </div>
+<!--
+                <div class="add">
+                 <li class="nav-item" >
+                    <a id = "add" class="nav-link link text-white display-5" href="Artwork%20Adding%20Page.html"><img src="indexassets/add" width="28" height="28"></a>
+                </li>
+                    </div>
+-->
                                 <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id="signout1"  class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -168,28 +223,125 @@ margin-left: 50em;
     </nav>
 </section>
 
+    <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+     
+        
+        $(document).ready(function(){
+  $(".search").hover(function(){
+    //hover
+      document.getElementById("search1").innerHTML="<img src='indexassets/search2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("search1").innerHTML="<img src='indexassets/search.png' width='25' height='28'>";
+  }); 
+});
+        
+        
+    </script>
 
+<div id = "search-2"  placeholder="Search names...">
+    
+         <form id="searchTitle">
+         <input id="filterInput" type="text">
+             
+
+         
+         </form>
+         
+            
+         
+    </div>
+    
+     <script>
+       
+         $(document).ready(function(){
+  $("#search1").click(function(){
+    $("#search-2").toggle();
+  });
+}); 
+         
+         <?php
+             $query = "SELECT title FROM Artwork";
+             $result = mysqli_query($conn,$query);
+         
+         
+ while($Arr = mysqli_fetch_array($result)){
+             $art = $Arr["title"];
+             ?>
+            var art = "<?php echo $art ?>";
+            var node = document.createElement("div");
+            node.setAttribute("class","Artworks");
+            document.getElementById('searchTitle').appendChild(node);
+     
+            node.innerHTML = "<a href='View%20Artwork%20(Artist).php 'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+         
+   <?php } ?>
+ 
+         
+         
+         // Get input element
+    let filterInput = document.getElementById('filterInput');
+    // Add event listener
+    filterInput.addEventListener('keyup', filterNames);
+
+    function filterNames(){
+
+      // Get value of input
+      let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+      // Get names ul
+      let allTitles = document.getElementById('searchTitle');
+      // Get lis from ul
+      let arts = allTitles.querySelectorAll('div.Artworks');
+
+      // Loop through collection-item lis
+      for(let i = 0;i < arts.length;i++){
+        let a = arts[i].getElementsByClassName('titles')[0];
+        // If matched
+        if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+          arts[i].style.display = 'block';
+        } else {
+          arts[i].style.display = 'none';
+        }
+      }
+
+    }
+         
+         
+ 
+    </script>
     
     
     <!--paste your body code-->
-     <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-z">
-</section>
-
-<section class="engine"><a href="https://mobirise.info/u">bootstrap responsive templates</a></section><section class="mbr-section form1 cid-rRBCXISrYL" id="form1-10">
-
     
-
-    
+      <section class="mbr-section form1 cid-rReWMzoXsU" id="form1-b"> 
     <div class="container">
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
-                <h2 id="accountid" class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">My Account</h2>
-          
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-1">
+                    My Account</h2>
+                
             </div>
         </div>
-
-        <a href="editFormVisitor.php"> <img id="editIcon" src="edit.png" height="50px" width="50px"></a>
+      <a href="editForm.php"> <img id="editIcon" src="edit.png" height="50px" width="50px"></a>
+            
     </div>
+
+
+    
+
+
 
 
 <div class="container" id = "hadeel-1">
@@ -199,8 +351,7 @@ margin-left: 50em;
 <?php
 $currentUser=$_SESSION['username'];    //check here after setting the session
 
-
-$query = "SELECT * FROM visitor WHERE userName = '$currentUser';"; 
+$query = "SELECT * FROM artist WHERE userName = '$currentUser';"; 
     
         
     if($result = mysqli_query($conn,$query)) 
@@ -211,58 +362,75 @@ $query = "SELECT * FROM visitor WHERE userName = '$currentUser';";
    
 
 <div id="shownInfo">
-   <p id="usernameFromDB" ><label id="uname" for="name-form1-b" class="form-control-label mbr-fonts-style display-7">User Name |  </label>
-  <?php echo $row[0]  ?> </p>
- <hr class="line" style="width: 80%;">
-
- <p id="nameFromDB" ><label id="name" for="name-form1-b" class="form-control-label mbr-fonts-style display-7">Name |  </label>
-  <?php echo $row[3]  ?> </p>
+   <p id="nameFromDB" ><label id="name" for="name-form1-b" class="form-control-label mbr-fonts-style display-7">Name |  </label>
+  <?php echo $row[2]  ?> </p>
  <hr class="line" style="width: 80%;">
 
   <p id="emailFromDB" ><label id="email" for="email-form1-b" class="form-control-label mbr-fonts-style display-7">Email |  </label>
-  <?php echo $row[2]  ?>   </p>
- </div>
+  <?php echo $row[4]  ?>   </p>
+ <hr class="line" style="width: 80%;">
+  <p id="aboutMeFromDB" ><label id="Aboutme" for="message-form1-b" class="form-control-label mbr-fonts-style display-7">About me |  </label>
+   <?php echo $row[3]  ?>
+   </p></div>
 
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </section>
 
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <section class="engine"><a href="https://mobirise.info/m">web design templates</a></section><script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/dropdown/js/nav-dropdown.js"></script>
-  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/theme/js/script.js"></script>
+  <!--<script src="assets/theme/js/script.js"></script>-->
   <script src="assets/formoid/formoid.min.js"></script>
-  
   
     <!----------------------->
      
+
 <section class="mbr-section article content9 cid-rQplkhn7NZ" id="content9-4">
 
 <section class="mbr-section article content9 cid-rQpllaL4cw" id="content9-5">
     
-     
+    <!--------------------------------------------------------------------------------------------
+
+    <div class="container" id = "hadeel-2">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid" id="parent">
+
+ 
+                <form id="form" style="display: none" action="Artist Account Page.php" method="POST" class="mbr-form form-with-styler" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="Qdpw0r4NV/YhOdycB0MkBs5eKQ4YtbucB3A1nsrk0wY4KLF2EF23WkF5b0+oPI0V2wW5+9YsccjpcgaTt8/QkZ8tZ4nOHNYihA4raFObhfl/ts0c6P3VJCX9KeVQGgiJ">
+                   
+                    <div class="dragArea row" id="aaa">
+                        <div class="col-md-4  form-group" data-for="name">
+                            <label id="name1" for="name-form1-b" class="form-control-label mbr-fonts-style display-7">Name</label>
+                            <input  type="text" name="name" data-form-field="Name"  value=<?php //echo $row[2]  ?>
+                            class="form-control display-7" id="name-form1-b" size="25">
+                        </div>
+                        <div class="col-md-4  form-group" data-for="email">
+                            <label id="email1" for="email-form1-b" class="form-control-label mbr-fonts-style display-7">Email</label>
+                            <input type="email"name="email" data-form-field="Email"  value=<?php //echo $row[4]  ?>
+                            class="form-control display-7" id="email-form1-b">
+                        </div>
+                        
+                        <div data-for="message" class="col-md-12 form-group">
+                            <label id="Aboutme1" for="message-form1-b" class="form-control-label mbr-fonts-style display-7">About me</label>
+                            <textarea name="message" data-form-field="Message"   value=<?php //echo $row[3]  ?>
+                            class="form-control display-7" id="message-form1-b" cols="36" ></textarea>
+                        </div>
+                        <div class="col-md-12 input-group-btn align-center"><button id="updateButton" type="submit" class="btn btn-form btn-primary display-4"><span class="mobi-mbri mobi-mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(69, 80, 91);"></span>Update my account</button></div>
+                    </div>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+----------------------------------------------------------------------------------------------->
 
     <div class="container" id="conus">
         <div class="inner-container" style="width: 100%;">
@@ -309,8 +477,55 @@ $query = "SELECT * FROM visitor WHERE userName = '$currentUser';";
   <script src="indexassets/dropdown/js/navbar-dropdown.js"></script>
   <script src="indexassets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="indexassets/parallax/jarallax.min.js"></script>
-  <script src="indexassets/theme/js/script.js"></script>
+  <!--<script src="indexassets/theme/js/script.js"></script>-->
   
   
+
+
+<!--
+
+  <script type = "text/javascript">
+   
+    window.addEventListener("load", start, false);
+
+    function start(event){
+      
+      var editIcon = document.getElementById('editIcon');
+      editIcon.addEventListener('click',showForm);
+    
+    }
+    function showForm(){
+
+      <?php
+//header("location :editForm.php");
+
+
+
+      ?>
+      var editIcon = document.getElementById('editIcon');
+      editIcon.style.display="none";
+
+
+      var shownInfoDiv = document.getElementById('shownInfo');
+      shownInfoDiv.style.display="none";
+      var  form= document.getElementById('form');
+      form.style.display= "inline-block";
+
+      
+
+      var updateButton=document.getElementById('updateButton');
+      updateButton.addEventListener('click',submitForm);
+    
+     }
+     function submitForm(){
+      var editIcon = document.getElementById('editIcon');
+      editIcon.style.display="block";
+       var shownInfoDiv = document.getElementById('shownInfo');
+      shownInfoDiv.style.display="block";
+     }
+
+  
+  </script>
+-->
 </body>
 </html>
