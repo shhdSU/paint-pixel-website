@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html >
-    <!-- V.2 -->
+    <!-- V.4 -->
     <?php include 'DBconnection.php';?>
     
     
@@ -114,8 +114,8 @@
           justify-content: center;
           text-align: center;
       }
-      .nav-item{padding-left: 10em;
-          padding-right: 10em;
+      .nav-item{padding-left: 17em;
+          padding-right: 3em;
       }
 
       .contactUs {margin-left: 25em}
@@ -148,6 +148,50 @@
       
        #aboutus strong{font-size: 30pt;}
     
+      #header2-0{
+          animation: myfirst 50s ease-in .1s infinite ;
+
+      }
+      
+      
+      @keyframes myfirst{
+          
+          0%{
+             background-image: url(indexassets/images/art0.jpg); 
+          }
+          10%{
+             background-image: url(indexassets/images/art1.jpg); 
+          }
+          20%{
+             background-image: url(indexassets/images/art2.jpg); 
+          }
+          30%{
+             background-image: url(indexassets/images/art3.jpg); 
+          }
+          40%{
+             background-image: url(indexassets/images/art4.jpg); 
+          }
+          50%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          60%{
+             background-image: url(indexassets/images/art6.jpg); 
+          }
+          70%{
+             background-image: url(indexassets/images/art7.jpg); 
+          }
+          80%{
+             background-image: url(indexassets/images/art8.jpg); 
+          }
+          90%{
+             background-image: url(indexassets/images/art9.jpg); 
+          }
+          100%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          
+          
+      }
 
     </style>
 
@@ -231,12 +275,13 @@
                 
         </div>
     </div>
-     <div class="mbr-arrow hidden-sm-down" aria-hidden="true" id="circul" style = "position:absolute; left:565px; top:600px;">
+     <div class="mbr-arrow hidden-sm-down" aria-hidden="true" id="circul" style = "position:absolute; left:570px; top:510px;">
         <a href="#next">
             <i class="mbri-down mbr-iconfont" style = "position:absolute; left: -15px"></i>
         </a>
     </div>
     </div>
+   
 </section>
  
     
