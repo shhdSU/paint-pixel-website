@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  >
 <head>
-        <!-- V.2 -->
+        <!-- V.3 -->
 
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -25,14 +25,58 @@
       .contactUs {margin-left: 25em}
       .contactUs strong {margin-left: 3em}
       .contactUs p a {padding-right: 3em;}
-      .nav-item{position: relative; padding-right:50em;
+      .nav-item{position: relative; padding-left:17em;
+          padding-right:29em;
       }
       
        #aboutus {text-align: center;
       
       }
        #aboutus strong{font-size: 30pt;}
+      #header2-0{
+          animation: myfirst 50s ease-in .1s infinite ;
+
+      }
       
+      
+      @keyframes myfirst{
+          
+          0%{
+             background-image: url(indexassets/images/art0.jpg); 
+          }
+          10%{
+             background-image: url(indexassets/images/art1.jpg); 
+          }
+          20%{
+             background-image: url(indexassets/images/art2.jpg); 
+          }
+          30%{
+             background-image: url(indexassets/images/art3.jpg); 
+          }
+          40%{
+             background-image: url(indexassets/images/art4.jpg); 
+          }
+          50%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          60%{
+             background-image: url(indexassets/images/art6.jpg); 
+          }
+          70%{
+             background-image: url(indexassets/images/art7.jpg); 
+          }
+          80%{
+             background-image: url(indexassets/images/art8.jpg); 
+          }
+          90%{
+             background-image: url(indexassets/images/art9.jpg); 
+          }
+          100%{
+             background-image: url(indexassets/images/art5.jpg); 
+          }
+          
+          
+      }
     </style>
   
 </head>
@@ -73,7 +117,7 @@
     </nav>
 </section>
 
-</section><section class="cid-rQpiiEn3UX mbr-fullscreen mbr-parallax-background" id="header2-0">
+<section class="mbr-fullscreen mbr-parallax-background" id="header2-0">
 
     
 
