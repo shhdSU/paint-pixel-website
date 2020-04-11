@@ -1,4 +1,3 @@
-<!--                  localhost/w/View%20Artwork%20(Artist).php          -->
 <!-- V.2 -->
 
 <?php
