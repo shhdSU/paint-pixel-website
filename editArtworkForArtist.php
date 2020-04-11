@@ -1,4 +1,3 @@
-<!--             localhost/w/editArtworkForArtist.php       -->
 <!-- V.2 -->
 
 
