@@ -1,4 +1,4 @@
-<!-- V.2 -->
+<!-- V.3 -->
 
 <?php
 
@@ -8,7 +8,8 @@ include "DBconnection.php";
 
 <!DOCTYPE html>
 <html  >
-        
+   
+    
 
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
@@ -29,6 +30,10 @@ include "DBconnection.php";
   <link rel="preload" as="style" href="indexassets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="indexassets/mobirise/css/mbr-additional.css" type="text/css">
   
   
+     <!-- important link for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    
   <title>View Artwork</title>
   <link rel="stylesheet" href="hadeelassets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="hadeelassets/bootstrap/css/bootstrap-grid.min.css">
@@ -138,17 +143,20 @@ color: #e3cd52;
                     <a class="nav-link link text-white display-5" href="Artist%20Account%20Page.html">
                         My account</a>
                 </li>
+<!--
                 <div class="search">
                  <li class="nav-item" >
                     <a id = "search1" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
                 </li>
                     </div>
+-->
+                <div class="add">
                 <li class="nav-item" >
                     <a id = "add" class="nav-link link text-white display-5" href="Artwork%20Adding%20Page.html"><img src="indexassets/add" width="28" height="28"></a>
-                </li>
+                    </li></div>
                                 <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id="signout3" class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -161,7 +169,30 @@ color: #e3cd52;
 
 
 
-
+ <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+            
+            $(document).ready(function(){
+  $(".add").hover(function(){
+    //hover
+      document.getElementById("add").innerHTML="<img src='indexassets/add2' width='28' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("add").innerHTML="<img src='indexassets/add' width='28' height='28'>";
+  }); 
+});
+            
+</script>
 
 
 
@@ -263,7 +294,6 @@ echo "<span id='commentText'>Comments for this artwork are unable</span><hr clas
 
 
 <!--
-
 <   Formbuilder Form--->
 
 
