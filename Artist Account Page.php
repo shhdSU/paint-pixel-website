@@ -3,13 +3,13 @@
 
 
 <?php
-session_start();
-if(!isset($_SESSION['username'])){
-  header("location: index.php");
-  exit();}
-
-include "DBconnection.php";
-           
+//session_start();
+//if(!isset($_SESSION['username'])){
+//  header("location: index.php");
+//  exit();}
+//
+//include "DBconnection.php";
+//           
 ?>
 
 
@@ -26,6 +26,10 @@ include "DBconnection.php";
   <link rel="shortcut icon" href="indexassets/images/fulllogo.png" type="image/x-icon">
   <meta name="description" content="">
   
+    
+     <!-- important link for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
   <link rel="stylesheet" href="indexassets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="indexassets/bootstrap/css/bootstrap.min.css">
@@ -146,11 +150,13 @@ margin-left: 50em;
                     <a class="nav-link link text-white display-5" href="#">
                         My account</a>
                 </li>
+<!--
                 <div class="search">
                  <li class="nav-item" >
                     <a id = "search1" class="nav-link link text-white display-5" href="#"><img src="indexassets/search.png" width="25" height="28"></a>
                 </li>
                     </div>
+-->
                 <div class="add">
                  <li class="nav-item" >
                     <a id = "add" class="nav-link link text-white display-5" href="Artwork%20Adding%20Page.html"><img src="indexassets/add" width="28" height="28"></a>
@@ -158,7 +164,7 @@ margin-left: 50em;
                     </div>
                                 <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id = "signout3" class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -168,6 +174,30 @@ margin-left: 50em;
 </section>
 
 
+    <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout3").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+            
+            $(document).ready(function(){
+  $(".add").hover(function(){
+    //hover
+      document.getElementById("add").innerHTML="<img src='indexassets/add2' width='28' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("add").innerHTML="<img src='indexassets/add' width='28' height='28'>";
+  }); 
+});
+            
+</script>
 
     
     
@@ -197,8 +227,8 @@ margin-left: 50em;
             <div class="media-container-column col-lg-8" data-form-type="formoid" id="parent">
 
 <?php
-$currentUser=$_SESSION['username'];    //check here after setting the session
-
+//$currentUser=$_SESSION['username'];    //check here after setting the session
+$currentUser = 'shhdsu';
 
 $query = "SELECT * FROM artist WHERE userName = '$currentUser';"; 
     
