@@ -284,7 +284,7 @@ $(document).ready(function(){
             node.setAttribute("class","Artworks");
             document.getElementById('searchTitle').appendChild(node);
      
-            node.innerHTML = "<a href='View%20Artwork%20(Artist).php 'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+            node.innerHTML = "<a href='View%20Artwork%20(visitor).php?title="+$art+"'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
          
    <?php } ?>
  
@@ -349,8 +349,8 @@ $(document).ready(function(){
             <div class="media-container-column col-lg-8" data-form-type="formoid" id="parent">
 
 <?php
-$currentUser=$_SESSION['username'];    //check here after setting the session
-
+//$currentUser=$_SESSION['username'];    //check here after setting the session
+$currentUser = 'shhdsu';
 $query = "SELECT * FROM artist WHERE userName = '$currentUser';"; 
     
         
