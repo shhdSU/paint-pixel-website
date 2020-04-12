@@ -296,7 +296,7 @@ $(document).ready(function(){
             node.setAttribute("class","Artworks");
             document.getElementById('searchTitle').appendChild(node);
      
-            node.innerHTML = "<a href='View%20Artwork%20(Artist).php 'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+            node.innerHTML = "<a href='View%20Artwork%20(visitor).php?title="+$art+"'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
          
    <?php } ?>
  
