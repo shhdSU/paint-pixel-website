@@ -1,19 +1,22 @@
 <?php
-    DEFINE('DB_USER','root');
-    DEFINE('DB_PSWD','');
-    DEFINE('DB_HOST','localhost');
-    DEFINE('DB_NAME','paint-and-pixel');
-    $conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD);
-    if ($conn) {
-  echo 'connected';
-} else {
-  echo 'not connected';
-}
-    if (!$conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD))
-        die("Connection failed.");
+//    DEFINE('DB_USER','root');
+//    DEFINE('DB_PSWD','');
+//    DEFINE('DB_HOST','localhost');
+//    DEFINE('DB_NAME','paint-and-pixel');
+//    $conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD);
+//    if ($conn) {
+//  echo 'connected';
+//} else {
+//  echo 'not connected';
+//}
+//    if (!$conn = mysqli_connect(DB_HOST,DB_USER,DB_PSWD))
+//        die("Connection failed.");
+//
+//    if(!mysqli_select_db($conn, DB_NAME))
+//        die("Could not open the ".DB_NAME." database.");
 
-    if(!mysqli_select_db($conn, DB_NAME))
-        die("Could not open the ".DB_NAME." database.");
+include "DBconnection.php";
+
     session_start();
 
 ?>
@@ -21,7 +24,7 @@
 <!DOCTYPE html>
 <html amp >
 <head>
-        <!-- V.0 -->
+        <!-- V.1 -->
 
      <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -31,6 +34,11 @@
   <link rel="shortcut icon" href="indexassets/images/fulllogo.png" type="image/x-icon">
   <meta name="description" content="">
   
+    
+    
+    <!-- important links for jQuery-->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
   <link rel="stylesheet" href="indexassets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="indexassets/bootstrap/css/bootstrap.min.css">
@@ -56,7 +64,7 @@
       height: 30px;
       width: 30px;
 }
-      .nav-item{margin-right: 16em;
+      .nav-item{margin-right: 14em;
       }
       .contactUs {margin-left: 25em}
       .contactUs strong {margin-left: 3em}
@@ -68,6 +76,58 @@
       #footer {color: white;}
       #bkgrnd {color: white;}
       #gallery1-4 {margin-top: 5em;}
+      
+      
+      #search-2 {
+          position: fixed;
+          overflow: scroll;
+          background-color: white;
+          border-radius: 10px;
+          display: none;
+          z-index: 10;
+          top :74px;
+          right: 450px;
+          border: 4px;
+          border-color: black;
+          max-height: 350px;
+      }
+      .Artworks{
+          margin-left:50px;
+          height: 30px; 
+          width: 200px;
+          border: solid; 
+          border-left-width: 5px;
+          border-right-width: 0px; 
+          border-bottom-width: 0px; 
+          border-top-width: 0px; 
+          border-left-color: #feeb7f; 
+          margin-top: 5px;
+          margin-left: 25px;
+          font-size: 20px;
+          display: none;
+          
+
+      }
+      .Artworks:hover{
+        border-left-color: gray;   
+      }
+      #filterInput{
+          background-color : #f6f6f6 ;
+          margin-left:0px;  
+          margin-top:17px; 
+          height: 50px; 
+          width: 380px; 
+          border: solid;
+          border-color: #feeb7f; 
+          border-radius:50px;
+          font-size: 20px
+      }
+      
+      .titles{
+          color: gray;
+      }
+      
+      
     </style>
     
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
@@ -143,7 +203,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
                     </div>
                                 <div class="signout">
                 <li class="nav-item" >
-                    <a  class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id= "signout1" class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                                     </div>
             </ul>
@@ -151,6 +211,107 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
         </div>
     </nav>
 </section>
+    
+    <script>
+$(document).ready(function(){
+  $(".signout").hover(function(){
+    //hover
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("signout1").innerHTML="<img src='indexassets/singout.png' width='25' height='28'>";
+  }); 
+});
+     
+        
+        $(document).ready(function(){
+  $(".search").hover(function(){
+    //hover
+      document.getElementById("search1").innerHTML="<img src='indexassets/search2.png' width='25' height='28'>";
+  },
+  function(){
+    //out
+      document.getElementById("search1").innerHTML="<img src='indexassets/search.png' width='25' height='28'>";
+  }); 
+});
+        
+        
+    </script>
+
+<div id = "search-2"  placeholder="Search names...">
+    
+         <form id="searchTitle">
+         <input id="filterInput" type="text">
+             
+
+         
+         </form>
+         
+            
+         
+    </div>
+    
+     <script>
+       
+         $(document).ready(function(){
+  $("#search1").click(function(){
+    $("#search-2").toggle();
+  });
+}); 
+         
+         <?php
+             $query = "SELECT title FROM Artwork";
+             $result = mysqli_query($conn,$query);
+         
+         
+ while($Arr = mysqli_fetch_array($result)){
+             $art = $Arr["title"];
+             ?>
+            var art = "<?php echo $art ?>";
+            var node = document.createElement("div");
+            node.setAttribute("class","Artworks");
+            document.getElementById('searchTitle').appendChild(node);
+     
+            node.innerHTML = "<a href='View%20Artwork%20(visitor).php?title="+$art+"'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+         
+   <?php } ?>
+ 
+         
+         
+         // Get input element
+    let filterInput = document.getElementById('filterInput');
+    // Add event listener
+    filterInput.addEventListener('keyup', filterNames);
+
+    function filterNames(){
+
+      // Get value of input
+      let filterValue = document.getElementById('filterInput').value.toUpperCase();
+
+      // Get names ul
+      let allTitles = document.getElementById('searchTitle');
+      // Get lis from ul
+      let arts = allTitles.querySelectorAll('div.Artworks');
+
+      // Loop through collection-item lis
+      for(let i = 0;i < arts.length;i++){
+        let a = arts[i].getElementsByClassName('titles')[0];
+        // If matched
+        if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
+          arts[i].style.display = 'block';
+        } else {
+          arts[i].style.display = 'none';
+        }
+      }
+
+    }
+         
+         
+ 
+    </script>
+    
+    
 <!--
 
 <section class="cid-rQpiiEn3UX mbr-fullscreen mbr-parallax-background" id="header2-0">
