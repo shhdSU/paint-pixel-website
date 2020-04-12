@@ -1,18 +1,9 @@
- <!-- V.5 -->
-
-
- <?php 
-session_start();
-//if(!isset($_SESSION['userName'])){
- // header("location: index.php");
-  //exit();}
-
-include "DBconnection.php";
-
- ?>
-
 <!DOCTYPE html>
-<html>    
+<html>
+        <?php include 'DBconnection.php';?>
+
+        <!-- V.6 -->
+
 <head>
   <!-- Site made with Mobirise Website Builder v4.12.0, https://mobirise.com -->
   <meta charset="UTF-8">
@@ -37,9 +28,7 @@ include "DBconnection.php";
       }
       .contactUs {margin-left: 30em}
       #gallery1-7 {background-color:#efefef;
-      align-content: center;
-      padding-top: -5em;
-    }
+      align-content: center;}
       #content10-8 {background-color:#e3cd52}
       #Galary {color: black;}
       #aboutus {text-align: center;
@@ -201,7 +190,7 @@ include "DBconnection.php";
                     <a class="nav-link link text-white display-5" href="#conus">
                         Contact us</a>
                 </li><li class="nav-item" >
-                    <a class="nav-link link text-white display-5" href="Visitor%20account%20Page%20.php">
+                    <a class="nav-link link text-white display-5" href="Visitor%20account%20Page%20.html">
                         My account</a>
                 </li>
                 <div class="search">
@@ -211,7 +200,7 @@ include "DBconnection.php";
                     </div>
               <div class="signout">
                 <li class="nav-item" >
-                    <a id="signout3" class="nav-link link text-white display-5" href="index.php"><img src="indexassets/singout.png" width="25" height="28"></a>
+                    <a id="signout3" class="nav-link link text-white display-5" href="index.html"><img src="indexassets/singout.png" width="25" height="28"></a>
                 </li>
                   </div>
             </ul>
@@ -309,7 +298,7 @@ include "DBconnection.php";
             node.setAttribute("class","Artworks");
             document.getElementById('searchTitle').appendChild(node);
      
-            node.innerHTML = "<a href='View%20Artwork%20(Artist).php 'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
+            node.innerHTML = "<a href='View%20Artwork%20(visitor).php?title="+$art+"'class='titles' >&nbsp;&nbsp;"+art+"<a>" ;
          
    <?php } ?>
  
@@ -364,90 +353,14 @@ include "DBconnection.php";
     </div>
 </section>
 
-
-
 <section class="mbr-gallery mbr-slider-carousel cid-rReCpFQ8Rc" id="gallery1-7">
 
-<a href="favouriteList.php"class="col-md-5 input-group-btn align-left"><button id="updateButton" name ="submit" class="btn btn-form btn-primary display-4"><span class="mobi-mbri mobi-mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(69, 80, 91);"></span>My favorite list</button></a>
-                    </div>
-<?php
-
-$query = "SELECT * FROM artwork; ";
-    
- $result = mysqli_query($conn,$query) ;  
-    if(!$result) 
-     print 'error';
-     
-
-?>
     
 <div>
-        <div><!-- Filter --><!-- Gallery -->
-
-
-<div class="mbr-gallery-row">
-  <div class="mbr-gallery-layout-default">
-    <div>
-      <div>
-
-<?php 
-$count=0;
- while($row=mysqli_fetch_assoc($result))  {  
-$href='View%20Artwork%20(visitor).php?title=' . $row['title'] ;
-$src=$row['path'];
-$title=$row['title'];
-$pathsArray[]=$src;
-
-  ?>
-
-<a href ="<?php  echo $href;  ?>"  >
-              <div class="mbr-gallery-item mbr-gallery-item--p1" >
-                <div href="<?php  echo $href;  ?>" data-slide-to="<?php  echo $count;  ?>" data-toggle="modal">
-                  <img src="<?php  echo $src;  ?>" alt="" title="">
-                  <span class="icon-focus"></span>
-                  <span class="mbr-gallery-title mbr-fonts-style display-7"> <?php  echo $title;  ?></span>
-                </div></div>
-              </a>
-
-<?php  $count++; }
-?>
-  
-            </div></div>
-            <div class="clearfix"></div>
-          </div></div> 
-
-          
-     <!-- Lightbox --><div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery1-7">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <ol class="carousel-indicators">
- 
-<script type="text/javascript">
-  var count= <?php echo $count; ?>;
-  for (var i = 0; i <count; i++) {
-    document.write('<li data-app-prevent-settings="" data-target="#lb-gallery1-7" data-slide-to="'+count+'"></li>');
-  }
-</script>
-      
-</ol>
-
-                    <div class="carousel-inner">
-
-<script type="text/javascript">
-
-  var paths[]= <?php echo $pathsArray; ?>;
-  for (var i = 0; i <pathsArray.lenght; i++) {
-    document.write('<div class="carousel-item active"><img src="'+paths[i]+'" ></div>');
-  }
-</script>
-                      </div>
-
-
-
-                    </div></div></div></div></div>
+        <div><!-- Filter --><!-- Gallery --><div class="mbr-gallery-row"><div class="mbr-gallery-layout-default"><div><div>
+            <a href ="View%20Artwork%20(visitor).html"><div class="mbr-gallery-item mbr-gallery-item--p1" ><div href="View%20Artwork%20(visitor).html" data-slide-to="0" data-toggle="modal"><img src="assets/images/background7.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Artwork Name</span></div></div></a><a href ="View%20Artwork%20(visitor).html"><div class="mbr-gallery-item mbr-gallery-item--p1"><div href="View%20Artwork%20(visitor).html" data-slide-to="1" data-toggle="modal"><img src="assets/images/background8.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Artwork Name</span></div></div></a><a href ="View%20Artwork%20(visitor).html"><div class="mbr-gallery-item mbr-gallery-item--p1" ><div href="View%20Artwork%20(visitor).html" data-slide-to="1" data-toggle="modal"><img src="assets/images/mbr-1920x1280.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Artwork Name</span></div></div></a><a href ="View%20Artwork%20(visitor).html"><div class="mbr-gallery-item mbr-gallery-item--p1"><div href="View%20Artwork%20(visitor).html" data-slide-to="2" data-toggle="modal"><img src="assets/images/mbr-1920x1280-800x533.jpg" alt="" title=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7">Artwork Name</span></div></div></a></div></div><div class="clearfix"></div></div></div><!-- Lightbox --><div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery1-7"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><ol class="carousel-indicators"><li data-app-prevent-settings="" data-target="#lb-gallery1-7" class=" active" data-slide-to="0"></li><li data-app-prevent-settings="" data-target="#lb-gallery1-7" data-slide-to="1"></li><li data-app-prevent-settings="" data-target="#lb-gallery1-7" data-slide-to="2"></li></ol><div class="carousel-inner"><div class="carousel-item active"><img src="assets/images/back ground7.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/background8.jpg" alt="" title=""></div><div class="carousel-item"><img src="assets/images/mbr-1920x1280.jpg" alt="" title=""></div></div><a class="carousel-control carousel-control-prev" role="button" data-slide="prev" href="View%20Artwork%20(Artist).html"><span class="mbri-left mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control carousel-control-next" role="button" data-slide="next" href="View%20Artwork%20(Artist).html"><span class="mbri-right mbr-iconfont" aria-hidden="true"></span><span class="sr-only">Next</span></a><a class="close" href="#" role="button" data-dismiss="modal"><span class="sr-only">Close</span></a></div></div></div></div></div>
     </div>
-
+    
 </section>
 
 
