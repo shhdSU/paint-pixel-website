@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 07, 2020 at 10:49 PM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2020 at 10:21 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,26 +25,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Artist`
+-- Table structure for table `artist`
 --
 
-CREATE TABLE `Artist` (
+CREATE TABLE `artist` (
   `userName` varchar(16) NOT NULL,
   `password` varchar(25) NOT NULL,
   `name` varchar(30) NOT NULL,
   `aboutMe` varchar(250) NOT NULL,
   `email` varchar(30) NOT NULL,
   `status` char(1) NOT NULL DEFAULT 'W',
-  `smaplePath` varchar(100) NOT NULL
+  `samplePath` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `artist`
+--
+
+INSERT INTO `artist` (`userName`, `password`, `name`, `aboutMe`, `email`, `status`, `samplePath`) VALUES
+('salgwaiz', '1234567890', 'salgwaiz', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'A1@HTMAIL.COM', 'Y', 'like.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Artwork`
+-- Table structure for table `artwork`
 --
 
-CREATE TABLE `Artwork` (
+CREATE TABLE `artwork` (
   `title` varchar(50) NOT NULL,
   `numLikes` int(12) NOT NULL,
   `numDislikes` int(12) NOT NULL,
@@ -55,26 +63,36 @@ CREATE TABLE `Artwork` (
   `A_userName` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `artwork`
+--
+
+INSERT INTO `artwork` (`title`, `numLikes`, `numDislikes`, `numFavorite`, `path`, `description`, `enableComm`, `postedDate`, `A_userName`) VALUES
+('Amazon2', 0, 0, 0, '1586707994_AmatuerAmazonUser.PNG', 'Amazon2', 0, '2020-04-12', 'salgwaiz'),
+('artwork', 4, 2, 5, '1586709770_LanguageCurrencyCountry.PNG', 'dpamgpms', 1, '2020-04-12', 'salgwaiz'),
+('map', 5, 1, 2, '1586640086_art7.jpg', 'new description', 0, '2020-04-12', 'salgwaiz'),
+('Shahad', 0, 0, 1, '1586709476_Efficiency.PNG', 'fadkg;oad;goajdogaj', 0, '2020-04-12', 'salgwaiz');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Comment`
+-- Table structure for table `comment`
 --
 
-CREATE TABLE `Comment` (
+CREATE TABLE `comment` (
   `text` varchar(450) NOT NULL,
   `commentID` int(3) NOT NULL,
   `V_userName` varchar(16) NOT NULL,
-  `AW_Tilte` varchar(50) NOT NULL
+  `AW_Title` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Favorite`
+-- Table structure for table `favorite`
 --
 
-CREATE TABLE `Favorite` (
+CREATE TABLE `favorite` (
   `V_userName` varchar(16) NOT NULL,
   `AW_title` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -82,10 +100,30 @@ CREATE TABLE `Favorite` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Visitor`
+-- Table structure for table `likedislike`
 --
 
-CREATE TABLE `Visitor` (
+CREATE TABLE `likedislike` (
+  `V_userName` varchar(16) NOT NULL,
+  `AW_Title` varchar(50) NOT NULL,
+  `liked` tinyint(1) NOT NULL,
+  `disliked` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `likedislike`
+--
+
+INSERT INTO `likedislike` (`V_userName`, `AW_Title`, `liked`, `disliked`) VALUES
+('visitor1', 'artwork', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitor`
+--
+
+CREATE TABLE `visitor` (
   `userName` varchar(16) NOT NULL,
   `password` varchar(25) NOT NULL,
   `email` varchar(30) NOT NULL,
@@ -93,42 +131,58 @@ CREATE TABLE `Visitor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `visitor`
+--
+
+INSERT INTO `visitor` (`userName`, `password`, `email`, `name`) VALUES
+('hadeel', '1234567890', 'h@gmail.com', 'hadeel'),
+('visitor1', '1234567890', 'vis@gmail.com', 'visitor1'),
+('visitor2', '2222222222', 'susu@hotmail.com', 'visitor3');
+
+--
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Artist`
+-- Indexes for table `artist`
 --
-ALTER TABLE `Artist`
+ALTER TABLE `artist`
   ADD PRIMARY KEY (`userName`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `Artwork`
+-- Indexes for table `artwork`
 --
-ALTER TABLE `Artwork`
+ALTER TABLE `artwork`
   ADD PRIMARY KEY (`title`),
   ADD KEY `FK` (`A_userName`);
 
 --
--- Indexes for table `Comment`
+-- Indexes for table `comment`
 --
-ALTER TABLE `Comment`
+ALTER TABLE `comment`
   ADD PRIMARY KEY (`commentID`),
   ADD KEY `Comment_ibfk_1` (`V_userName`),
-  ADD KEY `AW_Tilte` (`AW_Tilte`);
+  ADD KEY `AW_Tilte` (`AW_Title`);
 
 --
--- Indexes for table `Favorite`
+-- Indexes for table `favorite`
 --
-ALTER TABLE `Favorite`
+ALTER TABLE `favorite`
   ADD KEY `AW_title` (`AW_title`),
   ADD KEY `V_userName` (`V_userName`);
 
 --
--- Indexes for table `Visitor`
+-- Indexes for table `likedislike`
 --
-ALTER TABLE `Visitor`
+ALTER TABLE `likedislike`
+  ADD KEY `V_userName` (`V_userName`),
+  ADD KEY `AW_Title` (`AW_Title`);
+
+--
+-- Indexes for table `visitor`
+--
+ALTER TABLE `visitor`
   ADD PRIMARY KEY (`userName`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -137,34 +191,41 @@ ALTER TABLE `Visitor`
 --
 
 --
--- AUTO_INCREMENT for table `Comment`
+-- AUTO_INCREMENT for table `comment`
 --
-ALTER TABLE `Comment`
-  MODIFY `commentID` int(3) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `comment`
+  MODIFY `commentID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `Artwork`
+-- Constraints for table `artwork`
 --
-ALTER TABLE `Artwork`
-  ADD CONSTRAINT `FK` FOREIGN KEY (`A_userName`) REFERENCES `Artist` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `artwork`
+  ADD CONSTRAINT `FK` FOREIGN KEY (`A_userName`) REFERENCES `artist` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Comment`
+-- Constraints for table `comment`
 --
-ALTER TABLE `Comment`
-  ADD CONSTRAINT `Comment_ibfk_1` FOREIGN KEY (`V_userName`) REFERENCES `Visitor` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Comment_ibfk_2` FOREIGN KEY (`AW_Tilte`) REFERENCES `Artwork` (`title`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comment`
+  ADD CONSTRAINT `Comment_ibfk_1` FOREIGN KEY (`V_userName`) REFERENCES `visitor` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Comment_ibfk_2` FOREIGN KEY (`AW_Title`) REFERENCES `artwork` (`title`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `Favorite`
+-- Constraints for table `favorite`
 --
-ALTER TABLE `Favorite`
-  ADD CONSTRAINT `Favorite_ibfk_1` FOREIGN KEY (`AW_title`) REFERENCES `Artwork` (`title`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Favorite_ibfk_2` FOREIGN KEY (`V_userName`) REFERENCES `Visitor` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `favorite`
+  ADD CONSTRAINT `Favorite_ibfk_1` FOREIGN KEY (`AW_title`) REFERENCES `artwork` (`title`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Favorite_ibfk_2` FOREIGN KEY (`V_userName`) REFERENCES `visitor` (`userName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `likedislike`
+--
+ALTER TABLE `likedislike`
+  ADD CONSTRAINT `likedislike_ibfk_1` FOREIGN KEY (`V_userName`) REFERENCES `visitor` (`userName`),
+  ADD CONSTRAINT `likedislike_ibfk_2` FOREIGN KEY (`AW_Title`) REFERENCES `artwork` (`title`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
